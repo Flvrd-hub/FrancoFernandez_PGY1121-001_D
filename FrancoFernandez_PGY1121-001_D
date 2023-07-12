@@ -1,0 +1,89 @@
+lista_departamento= ["A1,B1,C1,D1,A2,B2,C2,D2,A3,B3,C3,D3,A4,B4,C4,D4,A5,B5,C5,D5,A6,B6,C6,D6,A7,B7,C7,D7,A8,B8,C8,D8,A9,B9,C9,D9,A10,B10,C10,D10"]
+lista_departamento_comprado = []
+costo = 0
+op = 0
+cant= 0
+def menu_principal():
+    print("----Inmobiliaria Casa Feliz----")
+    print("1. Comprar Departamento")
+    print("2. Mostrar Departamentos disponibles")
+    print("3. Ver listado de compradores")
+    print("4. Mostrar Ganancias Totales")
+    print("5. Salir")
+
+def cantidad_depto():
+    while True:
+        try:
+            cant= int(input("ingrese la cantidad de departamentos que desea comprar:"))
+            if cant<1 or cant>40 :
+             print("la cantidad de departamentos esta excedida")
+            else:
+             return(cant)
+
+        except valueError:
+            print("error")
+
+
+def asignar_departamento(a):
+    while a != 0:
+        try:
+            print(lista_departamento)
+            depto = input("escoja el departamento: ")
+
+            if depto in lista_departamento:
+                depto-=1
+                rut= int(input("ingrese el Rut del comprador"))
+                lista_x =[depto,rut]
+                lista_departamento_comprado.append(lista_x)
+                lista_departamento.pop(depto-1)
+                lista_departamento.insert(depto-1,"x")
+            elif depto not in lista_departamento :
+                print("Ingrese un Departamento disponible por favor")
+        except ValueError:
+            print("error")
+   
+    return(lista_departamento_comprado,lista_departamento)
+
+
+
+def ganancias_totales():
+    departamento_A = 0
+    departamento_B = 0
+    departamento_C = 0
+    departamento_D = 0
+    for i in lista_departamento("A1,A2,A3,A4,A5,A6,A7,A8,A9,A10") :
+         departamento_A += 3.800
+    for i in lista_departamento("B1,B2,B3,B4,B5,B6,B7,B8,B9,B10") :
+        departamento_B += 3.000
+    for i in lista_departamento("C1,C2,C3,C4,C5,C6,C6,C8,C9,C10") :
+        departamento_C += 2.800
+    for i in lista_departamento("D1,D2,D3,D4,D5,D6,D7,D8,D9,D10") :
+        departamento_D += 3.500
+    costo = departamento_A + departamento_B + departamento_C + departamento_D
+    print(f"Las ganancias totales son: {costo}")
+
+
+while True:
+        try:
+            menu_principal()
+            op = int(input("Ingrese una opcion Valida: "))
+            if op==1:
+                asignar_departamento(cantidad_depto())
+            elif op==2:
+                print(lista_departamento)
+            elif op==3:
+                for f in ("A1,B1,C1,D1,A2,B2,C2,D2,A3,B3,C3,D3,A4,B4,C4,D4,A5,B5,C5,D5,A6,B6,C6,D6,A7,B7,C7,D7,A8,B8,C8,D8,A9,B9,C9,D9,A10,B10,C10,D10") :
+                 for  i in lista_departamento_comprado:
+                    if i[0]== f:
+                     print(i[1])
+            elif op==4:
+                ganancias_totales()
+            elif op==5:
+                break
+
+        except ValueError:
+         print("error")
+                
+print("Franco Fernandez")
+print("12-07-2023")
+            
